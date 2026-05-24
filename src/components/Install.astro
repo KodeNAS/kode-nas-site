@@ -56,9 +56,9 @@ sudo ./scripts/install.sh`;
     <div class="install-cli tile" data-reveal style="--reveal-delay: 240ms;">
       <header class="cli-head">
         <span class="cli-prompt"><Icon name="terminal" size={14} /> install on your Pi</span>
-        <button type="button" class="cli-copy" data-copy-target="#install-cmd" aria-label="Copy install command">
-          <span class="copy-default"><Icon name="copy" size={14} /> Copy</span>
-          <span class="copy-done"><Icon name="check" size={14} /> Copied</span>
+        <button type="button" class="cli-copy" data-copy-target="#install-cmd" aria-label="Copy install command" title="Copy">
+          <span class="copy-default"><Icon name="copy" size={14} /></span>
+          <span class="copy-done"><Icon name="check" size={14} /></span>
         </button>
       </header>
       <pre class="code" id="install-cmd"><code>{installCmd}</code></pre>
@@ -168,20 +168,27 @@ sudo ./scripts/install.sh`;
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.35rem 0.75rem;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
     border-radius: 999px;
     background: var(--bg-elev-strong);
     border: 1px solid var(--border-strong);
-    color: var(--fg);
-    font-size: 0.8125rem;
+    color: var(--fg-2);
     cursor: pointer;
-    transition: background 150ms ease, color 150ms ease;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease, transform 200ms ease;
   }
-  .cli-copy:hover { background: var(--bg-elev-strong); border-color: var(--primary-hover); }
+  .cli-copy:hover { background: var(--bg-elev-strong); border-color: var(--primary-hover); color: var(--fg); }
   .cli-copy:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px var(--glow);
+  }
+  .cli-copy .copy-default,
+  .cli-copy .copy-done {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   .cli-copy .copy-done { display: none; color: var(--primary-hover); }
   .cli-copy.is-copied .copy-default { display: none; }

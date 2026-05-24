@@ -22,24 +22,14 @@ import Icon from "./Icon.astro";
         <a class="btn-secondary" href="https://github.com/KodeNAS" target="_blank" rel="noreferrer noopener">
           <Icon name="github" size={16} /> KodeNAS on GitHub
         </a>
-        <a
-          class="stars-badge"
-          href="https://github.com/KodeNAS/kode-os/stargazers"
-          target="_blank"
-          rel="noreferrer noopener"
-          title="GitHub stargazers — kode-os"
-        >
-          <Icon name="star" size={14} />
-          <span class="stars-label">Star kode-os</span>
-          <img
-            src="https://img.shields.io/github/stars/KodeNAS/kode-os?label=&style=flat-square&color=2D5F4E&logoColor=ffffff"
-            alt=""
-            class="stars-count"
-            loading="lazy"
-          />
-        </a>
         <a class="btn-secondary" href="https://discord.gg/kodenas" target="_blank" rel="noreferrer noopener" title="Discord — placeholder URL">
           <Icon name="discord" size={16} /> Discord
+        </a>
+        <a class="btn-secondary" href="https://github.com/KodeNAS/kode-os/stargazers" target="_blank" rel="noreferrer noopener">
+          <Icon name="star" size={16} /> Star kode-os
+        </a>
+        <a class="btn-secondary" href="https://github.com/KodeNAS/kode-os-ui/stargazers" target="_blank" rel="noreferrer noopener">
+          <Icon name="star" size={16} /> Star kode-os-ui
         </a>
       </div>
     </div>
@@ -93,25 +83,4 @@ import Icon from "./Icon.astro";
     .community-actions { justify-content: flex-end; }
   }
 
-  .stars-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.45rem 0.7rem 0.45rem 0.85rem;
-    border-radius: 999px;
-    background: var(--bg-elev);
-    border: 1px solid var(--border-strong);
-    color: var(--fg);
-    font-size: 0.8125rem;
-    text-decoration: none;
-    transition: background 150ms ease, border-color 150ms ease;
-  }
-  .stars-badge:hover { background: var(--bg-elev-strong); border-color: var(--primary-hover); }
-  .stars-label { color: var(--fg-2); }
-  .stars-count {
-    height: 18px;
-    display: block;
-    border-radius: 4px;
-    background: var(--bg-elev-strong);
-  }
 </style>
