@@ -1,0 +1,96 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Path-prefix for the canonical URL, defaults to "/os" */
+  path?: string;
+}
+
+const {
+  title,
+  description = "KODE OS is a calm, private-cloud OS for the Raspberry Pi. Your apps, files, and family — on your own pebble.",
+  path = "/os",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`https://kodenas.dev${path}`} />
+    <meta name="theme-color" content="#0b1418" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5f7f6" media="(prefers-color-scheme: light)" />
+
+    {/* Initial theme — set before paint to avoid flash. Dark is canonical. */}
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem("kode-theme");
+          var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+          var useLight = saved ? saved === "light" : prefersLight;
+          if (useLight) document.documentElement.classList.add("light");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    {/* Scroll-reveal observer + theme toggle wiring */}
+    <script is:inline>
+      (function () {
+        // Reveal-on-scroll — IntersectionObserver, runs once per element.
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-revealed");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+          );
+          document.querySelectorAll("[data-reveal]").forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          document.querySelectorAll("[data-reveal]").forEach(function (el) {
+            el.classList.add("is-revealed");
+          });
+        }
+
+        // Theme toggle
+        document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var root = document.documentElement;
+            var nowLight = !root.classList.contains("light");
+            root.classList.toggle("light", nowLight);
+            try {
+              localStorage.setItem("kode-theme", nowLight ? "light" : "dark");
+            } catch (e) {}
+            btn.setAttribute("aria-pressed", nowLight ? "true" : "false");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
