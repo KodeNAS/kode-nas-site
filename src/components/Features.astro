@@ -1,0 +1,151 @@
+---
+import Icon from "./Icon.astro";
+
+/**
+ * Features pulled directly from CLAUDE.md:
+ *  - Beginner dashboard (drag-and-drop, 6 layouts)
+ *  - First-boot wizard
+ *  - Family profiles (unified login)
+ *  - No telemetry / privacy
+ *  - App catalogue (CasaOS upstream)
+ *  - Open source
+ *
+ * Voice: strict — "apps", "your pebble", second-person future. Never NAS / Docker / SMB.
+ */
+
+const features = [
+  {
+    icon: "layout" as const,
+    title: "A dashboard for the family",
+    body:
+      "Drag-and-drop widgets, six ready-made layouts. Each family member gets their own. Nothing technical to learn.",
+  },
+  {
+    icon: "wand" as const,
+    title: "Set up in five minutes",
+    body:
+      "A guided first-boot wizard walks you through Wi-Fi, accounts and your first apps. No terminal required.",
+  },
+  {
+    icon: "users" as const,
+    title: "Accounts for everyone",
+    body:
+      "Add a profile for each person in the house. Kids can sign in, parents stay in control, everyone keeps their own space.",
+  },
+  {
+    icon: "shield" as const,
+    title: "Private by default",
+    body:
+      "No accounts to sign up for. No analytics. No phone-home updates. Your pebble stays on your network — and stays yours.",
+  },
+  {
+    icon: "grid" as const,
+    title: "Apps you actually want",
+    body:
+      "Photos, file sharing, movies, smart home, ad-blocking, more. Browse the built-in catalogue and install with one tap.",
+  },
+  {
+    icon: "code" as const,
+    title: "Open source, end to end",
+    body:
+      "Apache 2.0 licensed. Built on CasaOS. Every line of code lives on GitHub — yours to read, fork or contribute back.",
+  },
+];
+---
+
+<section id="features" class="features">
+  <div class="rail">
+    <header class="section-header" data-reveal>
+      <span class="label-meta">Features</span>
+      <h2 class="section-title">A friendly OS, end to end</h2>
+      <p class="section-sub">
+        KODE OS hides the wiring and surfaces the things people actually do —
+        photos, files, apps, accounts.
+      </p>
+    </header>
+
+    <div class="feature-grid">
+      {features.map((f, i) => (
+        <article class="feature tile" data-reveal style={`--reveal-delay: ${i * 60}ms;`}>
+          <div class="feature-icon" aria-hidden="true">
+            <Icon name={f.icon} size={20} />
+          </div>
+          <h3 class="feature-title">{f.title}</h3>
+          <p class="feature-body">{f.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features { padding-block: clamp(3.5rem, 7vw, 6rem); position: relative; }
+
+  .section-header {
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+  .section-title {
+    margin: 0.5rem 0 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .section-sub {
+    margin: 0;
+    color: var(--fg-2);
+    font-size: 1rem;
+    line-height: 1.55;
+    max-width: 56ch;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .feature-grid { grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  }
+  @media (min-width: 980px) {
+    .feature-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .feature {
+    padding: 1.4rem 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
+                border-color 200ms ease,
+                background 200ms ease;
+  }
+  .feature:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    background: var(--bg-elev-strong);
+  }
+  .feature-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2D5F4E, #3F7A66);
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 4px 12px rgba(0, 0, 0, 0.20);
+    margin-bottom: 0.35rem;
+  }
+  .feature-title {
+    margin: 0;
+    font-size: 1.0625rem;
+    line-height: 1.25;
+    color: var(--fg);
+  }
+  .feature-body {
+    margin: 0;
+    color: var(--fg-2);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+</style>

@@ -1,0 +1,137 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  active?: "os" | "pebble";
+}
+
+const { active = "os" } = Astro.props;
+
+const links = [
+  { href: "#features", label: "Features" },
+  { href: "#install", label: "Install" },
+  { href: "https://github.com/KodeNAS/kode-os", label: "kode-os", external: true },
+  { href: "https://github.com/KodeNAS/kode-os-ui", label: "kode-os-ui", external: true },
+];
+---
+
+<header class="site-nav">
+  <div class="nav-inner rail">
+    <a href="/os" class="nav-brand" aria-label="KODE OS — home">
+      <img src="/logo-mark.svg" alt="" width="22" height="22" class="brand-mark" />
+      <span class="brand-word">KODE<span class="brand-word-2">OS</span></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class="nav-link"
+          target={l.external ? "_blank" : undefined}
+          rel={l.external ? "noreferrer noopener" : undefined}
+        >
+          {l.label}
+          {l.external && <Icon name="external" size={13} class="link-arrow" />}
+        </a>
+      ))}
+
+      <button
+        type="button"
+        class="theme-toggle"
+        data-theme-toggle
+        aria-label="Toggle theme"
+        aria-pressed="false"
+        title="Toggle light / dark"
+      >
+        <span class="theme-icon theme-icon-dark"><Icon name="moon" size={15} /></span>
+        <span class="theme-icon theme-icon-light"><Icon name="sun" size={15} /></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 60px;
+  }
+  .nav-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--fg);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .brand-mark { display: block; color: var(--fg); }
+  .brand-word { font-size: 0.95rem; letter-spacing: 0.04em; }
+  .brand-word-2 { font-weight: 400; color: var(--fg-2); margin-left: 0.35rem; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .nav-link {
+    color: var(--fg-2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 150ms ease, background 150ms ease;
+  }
+  .nav-link:hover { color: var(--fg); background: var(--bg-elev); }
+  .nav-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--glow);
+  }
+  .link-arrow { opacity: 0.55; }
+
+  .theme-toggle {
+    margin-left: 0.35rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    color: var(--fg);
+    cursor: pointer;
+    transition: background 150ms ease, border-color 150ms ease, transform 200ms ease;
+  }
+  .theme-toggle:hover { background: var(--bg-elev-strong); }
+  .theme-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--glow);
+  }
+  .theme-icon { display: none; }
+  /* Show moon in light mode (action: switch to dark), sun in dark mode (action: switch to light) */
+  :global(.light) .theme-icon-dark { display: inline-flex; }
+  :global(html:not(.light)) .theme-icon-light { display: inline-flex; }
+
+  @media (max-width: 640px) {
+    .nav-link { padding: 0.35rem 0.5rem; font-size: 0.8125rem; }
+    .brand-word-2 { display: none; }
+  }
+  @media (max-width: 460px) {
+    .nav-link:not([href^="#"]) { display: none; }
+  }
+</style>

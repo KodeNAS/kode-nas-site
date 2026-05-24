@@ -1,0 +1,109 @@
+---
+const year = new Date().getFullYear();
+
+const footerLinks = [
+  { label: "Docs", href: "https://docs.kodenas.dev" },
+  { label: "GitHub", href: "https://github.com/KodeNAS" },
+  { label: "License", href: "https://github.com/KodeNAS/kode-os/blob/main/LICENSE" },
+  { label: "Privacy", href: "https://github.com/KodeNAS/kode-os/blob/main/PRIVACY.md" },
+];
+---
+
+<footer class="site-footer">
+  <div class="rail footer-inner">
+    <div class="footer-brand">
+      <img src="/logo-mark.svg" alt="" width="20" height="20" class="footer-mark" />
+      <span class="footer-word">KODE NAS</span>
+    </div>
+
+    <nav aria-label="Footer">
+      <ul class="footer-links">
+        {footerLinks.map((l) => (
+          <li>
+            <a href={l.href} target="_blank" rel="noreferrer noopener">{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer-meta">
+      <p>© {year} KODE NAS.</p>
+      {/* Apache 2.0 attribution — required by CLAUDE.md hard rules */}
+      <p class="footer-attr">
+        Built on <a href="https://casaos.io" target="_blank" rel="noreferrer noopener">CasaOS</a>.
+        Apache 2.0 licensed.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding-block: 2rem 2.25rem;
+    margin-top: 2rem;
+  }
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  @media (min-width: 760px) {
+    .footer-inner {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--fg);
+  }
+  .footer-mark { color: var(--fg); }
+  .footer-word {
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    color: var(--fg-2);
+    font-weight: 500;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+  .footer-links a {
+    color: var(--fg-2);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    padding: 0.35rem 0;
+    transition: color 150ms ease;
+  }
+  .footer-links a:hover { color: var(--fg); }
+  .footer-links a:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--glow);
+    border-radius: 4px;
+  }
+
+  .footer-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    color: var(--fg-3);
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+  @media (min-width: 760px) {
+    .footer-meta { text-align: right; }
+  }
+  .footer-meta p { margin: 0; }
+  .footer-attr a { color: var(--fg-2); text-decoration: none; border-bottom: 1px dotted var(--border-strong); }
+  .footer-attr a:hover { color: var(--fg); }
+</style>

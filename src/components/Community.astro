@@ -1,0 +1,117 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<section class="community">
+  <div class="rail">
+    <div class="community-card tile" data-reveal>
+      <div class="community-text">
+        <span class="label-meta">Built in the open</span>
+        <h2 class="community-title">
+          A homelab project, made gentler.
+        </h2>
+        <p class="community-body">
+          KODE OS is a fork of <a href="https://casaos.io" target="_blank" rel="noreferrer noopener">CasaOS</a> —
+          the same calm, technical foundation, polished into something a
+          non-technical family member can sign into. Every commit lives on
+          GitHub. Issues and pull requests welcome.
+        </p>
+      </div>
+
+      <div class="community-actions">
+        <a class="btn-secondary" href="https://github.com/KodeNAS" target="_blank" rel="noreferrer noopener">
+          <Icon name="github" size={16} /> KodeNAS on GitHub
+        </a>
+        <a
+          class="stars-badge"
+          href="https://github.com/KodeNAS/kode-os/stargazers"
+          target="_blank"
+          rel="noreferrer noopener"
+          title="GitHub stargazers — kode-os"
+        >
+          <Icon name="star" size={14} />
+          <span class="stars-label">Star kode-os</span>
+          <img
+            src="https://img.shields.io/github/stars/KodeNAS/kode-os?label=&style=flat-square&color=2D5F4E&logoColor=ffffff"
+            alt=""
+            class="stars-count"
+            loading="lazy"
+          />
+        </a>
+        <a class="btn-secondary" href="https://discord.gg/kodenas" target="_blank" rel="noreferrer noopener" title="Discord — placeholder URL">
+          <Icon name="discord" size={16} /> Discord
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .community { padding-block: clamp(3rem, 6vw, 5rem); }
+  .community-card {
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  @media (min-width: 860px) {
+    .community-card {
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+    }
+  }
+  .community-text { display: flex; flex-direction: column; gap: 0.5rem; }
+  .community-title {
+    margin: 0.5rem 0 0;
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    max-width: 22ch;
+  }
+  .community-body {
+    margin: 0.5rem 0 0;
+    color: var(--fg-2);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    max-width: 52ch;
+  }
+  .community-body a {
+    color: var(--fg);
+    border-bottom: 1px solid var(--border-strong);
+    text-decoration: none;
+  }
+  .community-body a:hover { border-bottom-color: var(--fg); }
+
+  .community-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  @media (min-width: 860px) {
+    .community-actions { justify-content: flex-end; }
+  }
+
+  .stars-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.7rem 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border-strong);
+    color: var(--fg);
+    font-size: 0.8125rem;
+    text-decoration: none;
+    transition: background 150ms ease, border-color 150ms ease;
+  }
+  .stars-badge:hover { background: var(--bg-elev-strong); border-color: var(--primary-hover); }
+  .stars-label { color: var(--fg-2); }
+  .stars-count {
+    height: 18px;
+    display: block;
+    border-radius: 4px;
+    background: var(--bg-elev-strong);
+  }
+</style>

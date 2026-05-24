@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Features from "../components/Features.astro";
+import Install from "../components/Install.astro";
+import Screenshots from "../components/Screenshots.astro";
+import Repos from "../components/Repos.astro";
+import Community from "../components/Community.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<Layout
+  title="KODE OS — Your private cloud server in 5 minutes"
+  description="KODE OS turns a Raspberry Pi into a calm, private home for your apps, files and photos. Open source, Apache 2.0, no telemetry."
+  path="/os"
+>
+  <Nav active="os" />
+  <main>
+    <Hero />
+    <Features />
+    <Install />
+    <Screenshots />
+    <Repos />
+    <Community />
+  </main>
+  <SiteFooter />
+</Layout>
