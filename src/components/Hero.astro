@@ -38,6 +38,27 @@ import Icon from "./Icon.astro";
       </a>
     </div>
 
+    <figure class="hero-shot" data-reveal style="--reveal-delay: 260ms;">
+      <div class="shot-frame">
+        <div class="shot-chrome">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="shot-url">pebble.local</span>
+        </div>
+        <img
+          src="/screenshots/dashboard.webp"
+          alt="The KODE OS dashboard — a welcome screen with widgets for time, weather, files, apps, storage and network."
+          width="1600"
+          height="1001"
+          loading="eager"
+          decoding="async"
+          class="shot-image"
+        />
+      </div>
+      <div class="hero-shot-glow" aria-hidden="true"></div>
+    </figure>
+
   </div>
 </section>
 
@@ -140,7 +161,7 @@ import Icon from "./Icon.astro";
 
   .hero-shot {
     position: relative;
-    margin-top: 2.5rem;
+    margin: 2.5rem 0 0;
     width: min(100%, 980px);
   }
   .hero-shot-glow {
@@ -180,23 +201,12 @@ import Icon from "./Icon.astro";
     font-size: 0.75rem;
     color: var(--fg-3);
   }
-  .shot-canvas {
-    aspect-ratio: 16 / 9;
-    background:
-      radial-gradient(circle at 30% 20%, rgba(63, 122, 102, 0.18), transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(45, 95, 78, 0.22), transparent 55%),
-      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.10));
-    display: grid;
-    place-items: center;
-  }
-  .shot-placeholder {
-    text-align: center;
-    padding: 1.5rem;
-    color: var(--fg-3);
-  }
-  .shot-placeholder p {
-    margin: 0.5rem 0 0;
-    font-size: 0.875rem;
+  .shot-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* The screenshot already carries its own forest-wallpaper backdrop; we
+       let it run full-bleed under the chrome strip. */
   }
 
   @media (max-width: 640px) {
