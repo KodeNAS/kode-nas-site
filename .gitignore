@@ -28,3 +28,6 @@ yarn-error.log*
 
 # private snapshot — gitignored by intent
 _assets-reference/
+
+# polish-pass working doc (per fix.md instructions)
+fix.md
