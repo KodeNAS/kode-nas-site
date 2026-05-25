@@ -67,6 +67,11 @@ sudo ./scripts/install.sh`;
         issue on <a href="https://github.com/KodeNAS/kode-os" target="_blank" rel="noreferrer noopener">GitHub</a>.
       </p>
     </div>
+
+    <a class="install-docs" href="https://docs.kodenas.dev/install" target="_blank" rel="noreferrer noopener" data-reveal style="--reveal-delay: 300ms;">
+      Read the full installation guide
+      <Icon name="arrow-right" size={14} />
+    </a>
   </div>
 </section>
 
@@ -209,4 +214,23 @@ sudo ./scripts/install.sh`;
   }
   .cli-foot a { color: var(--fg-2); border-bottom: 1px solid var(--border-strong); text-decoration: none; }
   .cli-foot a:hover { color: var(--fg); border-bottom-color: var(--fg); }
+
+  .install-docs {
+    margin-top: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--primary-hover);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: color 150ms ease, gap 200ms ease;
+  }
+  :global(.light) .install-docs { color: var(--primary-active); }
+  .install-docs:hover { color: var(--fg); gap: 0.55rem; }
+  .install-docs:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--glow);
+    border-radius: 4px;
+  }
 </style>
