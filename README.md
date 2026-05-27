@@ -32,4 +32,8 @@ npm run build
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+All Rights Reserved — see [LICENSE](LICENSE).
+
+This site source is published for transparency, not for reuse. The KODE OS
+*operating system* this site advertises is separately licensed under
+Apache 2.0 — see [KodeNAS/kode-os](https://github.com/KodeNAS/kode-os).
