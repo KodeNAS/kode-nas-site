@@ -2,32 +2,30 @@
 import Icon from "./Icon.astro";
 
 /**
- * Install command pulled from CLAUDE.md "Production install end-to-end":
- *   git clone https://github.com/KodeNAS/kode-os.git
- *   cd kode-os && sudo ./scripts/install.sh
+ * v0.2 install flow — flash and boot. No SSH, no install script.
  */
 
 const steps = [
   {
     n: "1",
-    title: "Flash the SD card",
-    body: "Use Raspberry Pi Imager. Pick Raspberry Pi OS Lite (64-bit). Add your Wi-Fi and SSH key before writing.",
+    title: "Download the image",
+    body: "Grab the latest .img.xz from the GitHub release. About 475 MB compressed.",
   },
   {
     n: "2",
-    title: "Boot the Pi",
-    body: "Plug in power and ethernet. The Pi appears on your network in about a minute as ‘pebble’.",
+    title: "Flash with Raspberry Pi Imager",
+    body: "Open Raspberry Pi Imager, pick “Use custom”, choose the .img.xz, and write it to your SD card.",
   },
   {
     n: "3",
-    title: "Run the installer",
-    body: "SSH in once, paste the command, and grab a coffee. About five minutes later, open your browser.",
+    title: "Boot and open the wizard",
+    body: "Plug in power and ethernet. After a few minutes, open http://pebble.local/ in any browser on your network.",
   },
 ];
 
-const installCmd = `git clone https://github.com/KodeNAS/kode-os.git
-cd kode-os
-sudo ./scripts/install.sh`;
+const installCmd = `# Optional: verify the download before flashing
+curl -fLO https://github.com/KodeNAS/kode-os/releases/download/v0.2.0-alpha/kode-os-v0.2.0-alpha-pi5-lite.img.xz.sha256
+sha256sum -c kode-os-v0.2.0-alpha-pi5-lite.img.xz.sha256`;
 ---
 
 <section id="install" class="install">
@@ -36,8 +34,8 @@ sudo ./scripts/install.sh`;
       <span class="label-meta">Install</span>
       <h2 class="section-title">Three steps, one cup of coffee</h2>
       <p class="section-sub">
-        KODE OS installs on top of Raspberry Pi OS Lite. You only need a Pi 5, an
-        SD card and an ethernet cable.
+        KODE OS ships as a single image based on Raspberry Pi OS Lite — you
+        flash it once and boot. No terminal, no install script.
       </p>
     </header>
 
@@ -55,7 +53,7 @@ sudo ./scripts/install.sh`;
 
     <div class="install-cli tile" data-reveal style="--reveal-delay: 240ms;">
       <header class="cli-head">
-        <span class="cli-prompt"><Icon name="terminal" size={14} /> install on your Pi</span>
+        <span class="cli-prompt"><Icon name="terminal" size={14} /> verify your download (optional)</span>
         <button type="button" class="cli-copy" data-copy-target="#install-cmd" aria-label="Copy install command" title="Copy">
           <span class="copy-default"><Icon name="copy" size={14} /></span>
           <span class="copy-done"><Icon name="check" size={14} /></span>
@@ -63,8 +61,9 @@ sudo ./scripts/install.sh`;
       </header>
       <pre class="code" id="install-cmd"><code>{installCmd}</code></pre>
       <p class="cli-foot">
-        Works on Raspberry Pi 5 (4 GB or 8 GB). Need a different board? Open an
-        issue on <a href="https://github.com/KodeNAS/kode-os" target="_blank" rel="noreferrer noopener">GitHub</a>.
+        Tested on Raspberry Pi 5 (4 GB). The 8 GB model is expected to work but
+        is unverified this release. Pi 4 support is on the roadmap — track it
+        on <a href="https://github.com/KodeNAS/kode-os" target="_blank" rel="noreferrer noopener">GitHub</a>.
       </p>
     </div>
 

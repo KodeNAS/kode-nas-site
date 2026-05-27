@@ -138,13 +138,6 @@
   }
   .btn-secondary:hover { background: var(--bg-elev-strong); }
   .btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--glow); }
-  .btn-secondary.is-disabled {
-    color: var(--fg-3);
-    cursor: not-allowed;
-    pointer-events: none;
-    background: transparent;
-    border-style: dashed;
-  }
 
   /* Field label — DESIGN.md micro/meta */
   .label-meta {
